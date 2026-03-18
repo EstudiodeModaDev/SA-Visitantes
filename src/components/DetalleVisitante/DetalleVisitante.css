@@ -1,0 +1,388 @@
+/* Modal de detalle — usa los tokens gd-* que ya tienes */
+
+.vdm-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(2, 6, 23, 0.52);
+  backdrop-filter: blur(6px);
+}
+
+.vdm-panel{
+  position: relative;
+  width: min(980px, 100%);
+  max-height: min(86vh, 900px);
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-glass);
+  box-shadow: var(--gd-shadow);
+  backdrop-filter: blur(14px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  outline: none;
+}
+
+.vdm-glow{
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 26% 28%, rgba(79,70,229,.18), transparent 55%),
+    radial-gradient(circle at 72% 66%, rgba(124,58,237,.12), transparent 55%);
+  pointer-events: none;
+}
+
+.vdm-head{
+  position: relative;
+  padding: 18px 18px 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid var(--gd-stroke);
+}
+
+.vdm-titleRow{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vdm-title{
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .2px;
+  color: var(--gd-text);
+}
+
+.vdm-subtitle{
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--gd-muted);
+  line-height: 1.35;
+}
+
+.vdm-x{
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: var(--gd-shadow-soft);
+}
+
+.vdm-body{
+  position: relative;
+  padding: 16px 18px 18px;
+  overflow: auto;
+}
+
+.vdm-empty{
+  position: relative;
+  padding: 22px 18px;
+}
+.vdm-emptyTitle{
+  font-weight: 900;
+  color: var(--gd-text);
+}
+.vdm-emptyText{
+  margin-top: 6px;
+  color: var(--gd-muted);
+  font-size: 12px;
+}
+
+.vdm-badge{
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.35);
+}
+[data-theme="dark"] .vdm-badge{ background: rgba(2,6,23,.28); }
+
+.vdm-ok{ border-color: rgba(34,197,94,.35); }
+.vdm-warn{ border-color: rgba(245,158,11,.35); }
+.vdm-bad{ border-color: rgba(239,68,68,.35); }
+.vdm-neutral{ border-color: var(--gd-stroke); }
+
+.vdm-kpis{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.vdm-kpi{
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.35);
+  border-radius: 18px;
+  padding: 12px;
+}
+[data-theme="dark"] .vdm-kpi{ background: rgba(2,6,23,.28); }
+
+.vdm-kpiLabel{
+  font-size: 11px;
+  color: var(--gd-muted);
+}
+.vdm-kpiValue{
+  margin-top: 6px;
+  font-weight: 900;
+  color: var(--gd-text);
+  letter-spacing: .2px;
+}
+
+.vdm-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.vdm-field{
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.30);
+  border-radius: 10px;
+  padding: 8px;
+  min-width: 200px;
+}
+[data-theme="dark"] .vdm-field{ background: rgba(2,6,23,.24); }
+
+.vdm-span2{ grid-column: span 4; }
+
+.vdm-label{
+  font-size: 11px;
+  color: var(--gd-muted);
+  letter-spacing: .2px;
+}
+
+.vdm-value{
+  margin-top: 6px;
+  color: var(--gd-text);
+  font-weight: 800;
+  line-height: 1.25;
+  word-break: break-word;
+  align-items: center;
+}
+
+.horizontalCenter{
+  justify-content: center;
+}
+
+.vdm-hint{
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--gd-muted);
+  word-break: break-word;
+}
+
+.vdm-pre{
+  white-space: pre-wrap;
+  font-weight: 700;
+}
+
+.vdm-callout{
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.35);
+  border-radius: 18px;
+  padding: 12px;
+}
+[data-theme="dark"] .vdm-callout{ background: rgba(2,6,23,.28); }
+
+.vdm-calloutIcon{
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  box-shadow: var(--gd-shadow-soft);
+}
+.vdm-calloutTitle{
+  font-weight: 900;
+  color: var(--gd-text);
+  font-size: 13px;
+}
+.vdm-calloutDesc{
+  margin-top: 2px;
+  color: var(--gd-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.vdm-foot{
+  position: relative;
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--gd-stroke);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.vdm-footRight{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.vdm-btn{
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform .12s ease, border-color .12s ease, opacity .12s ease;
+}
+.vdm-btn:hover{
+  transform: translateY(-1px);
+  border-color: var(--gd-stroke2);
+}
+.vdm-btn:disabled{
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+.vdm-btnPrimary{
+  border-color: rgba(79,70,229,0.35);
+  color: var(--gd-brand-contrast);
+  background: linear-gradient(135deg, var(--gd-brand), var(--gd-brand-2));
+  box-shadow: 0 10px 20px rgba(79,70,229,0.18);
+}
+.vdm-btnDanger{
+  border-color: rgba(239,68,68,.35);
+  background: rgba(239,68,68,.10);
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  .vdm-kpis{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px){
+  .vdm-grid{ grid-template-columns: 1fr; }
+  .vdm-span2{ grid-column: auto; }
+}
+
+/* ===== Botón / badge para "Ver firma" ===== */
+
+.vdm-linkBtn{
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(79,70,229,0.35);
+  background: linear-gradient(135deg, rgba(79,70,229,0.14), rgba(124,58,237,0.12));
+  color: var(--gd-text);
+  font-weight: 900;
+  letter-spacing: .15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform .12s ease, border-color .12s ease, opacity .12s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.vdm-linkBtn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(79,70,229,0.55);
+}
+
+.vdm-linkBtn:active{
+  transform: translateY(0px);
+}
+
+.vdm-linkBtn:focus-visible{
+  outline: none;
+  box-shadow: var(--gd-focus);
+}
+
+/* iconito opcional */
+.vdm-linkBtn svg{
+  width: 16px;
+  height: 16px;
+  opacity: .9;
+}
+
+/* estado disabled por si lo usas */
+.vdm-linkBtn:disabled{
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* fallback “No hay firma relacionada” */
+.vdm-pillMuted{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.30);
+  color: var(--gd-muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .vdm-pillMuted{
+  background: rgba(2,6,23,.22);
+}
+
+.vdm-signBox{
+  width: 100%;
+  max-width: 520px;
+  height: 160px;
+  border: 1px dashed rgba(255,255,255,.25);
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.vdm-signImg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* muestra toda la firma sin recortar */
+}
+
+.vdm-signBtn{
+  width: 100%;
+  max-width: 520px;
+  height: 160px;
+  padding: 0;
+  border: 1px dashed rgba(255,255,255,.25);
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  overflow: hidden;
+  cursor: pointer;
+
+  display: grid;
+  place-items: center; /* centra la imagen */
+}
+
+/* la imagen se adapta */
+.vdm-signImg{
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* firma completa sin recortar */
+  display: block;
+}

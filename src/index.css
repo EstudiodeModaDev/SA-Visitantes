@@ -1,0 +1,253 @@
+:root{
+  /* Typography */
+  --gd-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --gd-text: #0f172a;
+  --gd-muted: #475569;
+
+  /* Backgrounds / surfaces */
+  --gd-bg: #f6f7fb;
+  --gd-surface: #ffffff;
+  --gd-surface2: #f8fafc;
+  --gd-glass: rgba(255,255,255,0.65);
+
+  /* Borders / shadows */
+  --gd-stroke: rgba(15,23,42,0.12);
+  --gd-stroke2: rgba(15,23,42,0.18);
+  --gd-shadow: 0 12px 30px rgba(2,6,23,0.10);
+  --gd-shadow-soft: 0 10px 20px rgba(2,6,23,0.08);
+
+  /* Radius / spacing */
+  --gd-radius: 18px;
+  --gd-radius-sm: 14px;
+  --gd-pad: 18px;
+  --gd-gap: 16px;
+
+  /* Brand */
+  --gd-brand: #4f46e5;          /* indigo */
+  --gd-brand-2: #7c3aed;        /* purple */
+  --gd-brand-contrast: #ffffff;
+
+  /* Focus */
+  --gd-focus: 0 0 0 4px rgba(79, 70, 229, 0.22);
+
+  /* Sidebar sizing */
+  --gd-sb-w: 270px;
+  --gd-sb-w-collapsed: 78px;
+  --gd-top-pad: 16px;
+
+  /* Controls */
+  --gd-control-bg: rgba(2, 6, 23, 0.03);
+  --gd-control-ph: rgba(15,23,42,0.45);
+
+  /* Map ModernForm tokens to global (para que “pegue” sin pelear) */
+  --mf-font: var(--gd-font);
+}
+
+/* Dark overrides */
+[data-theme="dark"]{
+  --gd-text: #e5e7eb;
+  --gd-muted: #a1a1aa;
+
+  --gd-bg: #0b1220;
+  --gd-surface: rgba(255,255,255,0.06);
+  --gd-surface2: rgba(255,255,255,0.04);
+  --gd-glass: rgba(11,18,32,0.55);
+
+  --gd-stroke: rgba(255,255,255,0.12);
+  --gd-stroke2: rgba(255,255,255,0.18);
+
+  --gd-shadow: 0 18px 45px rgba(0,0,0,0.45);
+  --gd-shadow-soft: 0 12px 26px rgba(0,0,0,0.38);
+
+  --gd-brand: #818cf8;
+  --gd-brand-2: #c084fc;
+  --gd-brand-contrast: #0b1220;
+
+  --gd-focus: 0 0 0 4px rgba(129, 140, 248, 0.22);
+
+  --gd-control-bg: rgba(255,255,255,0.06);
+  --gd-control-ph: rgba(229,231,235,0.45);
+}
+
+/* =========================================================
+   Base / reset-ish
+   ========================================================= */
+*{ box-sizing: border-box; }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  font-family: var(--gd-font);
+  color: var(--gd-text);
+  background:
+    radial-gradient(1000px 500px at 18% 0%, rgba(79,70,229,0.10), transparent 55%),
+    radial-gradient(900px 480px at 85% 10%, rgba(124,58,237,0.08), transparent 60%),
+    var(--gd-bg);
+}
+
+a{ color: inherit; text-decoration: none; }
+button, input, select, textarea{ font-family: inherit; }
+
+/* Focus visible nice */
+:focus{ outline: none; }
+:focus-visible{
+  box-shadow: var(--gd-focus);
+  border-radius: 10px;
+}
+
+/* Scrollbar (Webkit) */
+*::-webkit-scrollbar{ width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb{
+  background: rgba(100,116,139,0.35);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+}
+[data-theme="dark"] *::-webkit-scrollbar-thumb{
+  background: rgba(148,163,184,0.28);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* =========================================================
+   App layout used in your code
+   ========================================================= */
+.gd-layout{
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--gd-sb-w) 1fr;
+  gap: 0;
+}
+
+/* When collapsed (you already toggle "is-collapsed") */
+.gd-layout.is-collapsed{
+  grid-template-columns: var(--gd-sb-w-collapsed) 1fr;
+}
+
+.gd-main{
+  padding: var(--gd-top-pad);
+  min-width: 0; /* important para grids con overflow */
+}
+
+.gd-content{
+  backdrop-filter: blur(10px);
+  border-radius: var(--gd-radius);
+  padding: var(--gd-pad);
+  min-height: calc(100vh - (var(--gd-top-pad) * 2));
+}
+
+/* =========================================================
+   Optional: page/layout used in your unauth view
+   (tú renderizas: <div className="page layout"><section className="page-view">...)
+   ========================================================= */
+.page.layout{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.page-view{
+  width: min(960px, 100%);
+  border-radius: var(--gd-radius);
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-glass);
+  box-shadow: var(--gd-shadow);
+  padding: 22px;
+}
+
+/* collapsed behavior (si tu SidebarSimple aplica .is-collapsed en root del layout) */
+.gd-layout.is-collapsed .sb-label{
+  display: none;
+}
+.gd-layout.is-collapsed .sb-item{
+  justify-content: center;
+}
+.gd-layout.is-collapsed .sb{
+  padding: 14px 10px;
+}
+
+/* =========================================================
+   Shared controls (inputs/buttons) in case other views need them
+   ========================================================= */
+.gd-input, .gd-select, .gd-textarea{
+  width: 100%;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-control-bg);
+  color: var(--gd-text);
+  border-radius: 12px;
+  padding: 11px 12px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.gd-input::placeholder, .gd-textarea::placeholder{
+  color: var(--gd-control-ph);
+}
+.gd-input:focus, .gd-select:focus, .gd-textarea:focus{
+  border-color: rgba(79,70,229,0.55);
+  box-shadow: var(--gd-focus);
+}
+
+.gd-btn{
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform .12s ease, border-color .12s ease, opacity .12s ease;
+}
+.gd-btn:hover{
+  transform: translateY(-1px);
+  border-color: var(--gd-stroke2);
+}
+.gd-btn:disabled{
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+.gd-btnPrimary{
+  border-color: rgba(79,70,229,0.35);
+  color: var(--gd-brand-contrast);
+  background: linear-gradient(135deg, var(--gd-brand), var(--gd-brand-2));
+  box-shadow: 0 10px 20px rgba(79,70,229,0.18);
+}
+
+/* =========================================================
+   Make ModernForm match the app surfaces more (optional)
+   - Solo “armoniza” sin re-escribir todo tu modern-form.css
+   ========================================================= */
+.mf-card{
+  /* si ya lo tienes, esto lo complementa con el entorno */
+  background:
+    radial-gradient(900px 380px at 15% 0%, rgba(79,70,229,0.12), transparent 50%),
+    radial-gradient(800px 360px at 85% 10%, rgba(124,58,237,0.10), transparent 55%),
+    var(--gd-surface);
+  border-color: var(--gd-stroke);
+  box-shadow: var(--gd-shadow-soft);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+/* Vite suele meter esto: max-width + margin auto + padding.
+   Esto lo neutraliza para que Welcome ocupe TODO. */
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}

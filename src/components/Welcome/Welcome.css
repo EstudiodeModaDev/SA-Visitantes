@@ -1,0 +1,192 @@
+/* Fullscreen base */
+.gd-login{
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--gd-bg);
+}
+
+/* Fondo decorativo */
+.gd-loginBg{ position:absolute; inset:0; pointer-events:none; }
+.gd-loginOrb{
+  position:absolute;
+  width:520px; height:520px;
+  border-radius:999px;
+  filter: blur(30px);
+  opacity:.55;
+  background: radial-gradient(circle at 30% 30%, rgba(79,70,229,.35), transparent 60%);
+}
+.gd-loginOrb--a{ top:-180px; left:-160px; }
+.gd-loginOrb--b{
+  bottom:-220px; right:-180px;
+  background: radial-gradient(circle at 50% 40%, rgba(124,58,237,.30), transparent 60%);
+}
+.gd-loginOrb--c{
+  top:20%; right:10%;
+  width:420px; height:420px;
+  opacity:.35;
+  background: radial-gradient(circle at 40% 40%, rgba(79,70,229,.22), transparent 65%);
+}
+.gd-loginGrid{
+  position:absolute;
+  inset:0;
+  opacity:.18;
+  background-image:
+    linear-gradient(to right, rgba(15,23,42,.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15,23,42,.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Shell: ocupa toda la pantalla */
+.gd-loginShell{
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr; /* izquierda más grande */
+}
+
+/* Left */
+.gd-loginLeft{
+  padding: clamp(24px, 5vw, 72px);
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+/* Right rail */
+.gd-loginRight{
+  padding: clamp(18px, 3.5vw, 48px);
+  display: grid;
+  align-content: center;
+  justify-items: stretch;
+}
+
+/* Panel derecho */
+.gd-loginRightCard{
+  border-radius: 26px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-glass);
+  box-shadow: var(--gd-shadow);
+  backdrop-filter: blur(14px);
+  padding: 22px;
+  overflow: hidden;
+}
+
+.gd-loginRightTop{ display:grid; gap:6px; margin-bottom: 14px; }
+.gd-loginMiniTitle{ font-weight: 900; letter-spacing:.2px; }
+.gd-loginMiniDesc{ color: var(--gd-muted); font-size: 13px; line-height: 1.45; }
+
+/* Header (reusa tus clases) */
+.gd-loginHeader{ display:grid; gap: 10px; }
+.gd-loginBrand{ display:flex; align-items:center; gap: 10px; }
+.gd-loginMark{
+  width: 44px; height: 44px;
+  border-radius: 16px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  display:grid; place-items:center;
+  box-shadow: var(--gd-shadow-soft);
+}
+.gd-loginMark span{
+  width: 16px; height: 16px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(79,70,229,.55), rgba(124,58,237,.35));
+  border: 1px solid rgba(79,70,229,.25);
+}
+.gd-loginBrandText{ display:grid; gap:2px; min-width:0; }
+.gd-loginBrandName{ color: var(--gd-text); font-size: 13px; letter-spacing:.2px; }
+.gd-loginBrandSub{ color: var(--gd-muted); font-size: 12px; }
+
+.gd-loginTitle{ margin:0; font-size: clamp(28px, 3vw, 44px); letter-spacing:.2px; }
+.gd-loginSubtitle{ margin:0; color: var(--gd-muted); font-size: 14px; line-height: 1.55; max-width: 62ch; }
+
+/* Callout (igual que el tuyo, apenas ajustado) */
+.gd-loginCallout{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.35);
+  border-radius: 18px;
+  padding: 12px;
+  max-width: 720px;
+}
+[data-theme="dark"] .gd-loginCallout{ background: rgba(2,6,23,.28); }
+
+.gd-loginCalloutIcon{
+  width: 36px; height: 36px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  box-shadow: var(--gd-shadow-soft);
+}
+.gd-loginCalloutText{ display:grid; gap:2px; }
+.gd-loginCalloutTitle{ font-weight: 900; font-size: 13px; letter-spacing:.2px; }
+.gd-loginCalloutDesc{ color: var(--gd-muted); font-size: 12px; line-height: 1.4; }
+
+/* Pills (extra sin cambiar tu contenido base) */
+.gd-loginLeftHint{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+.gd-loginPill{
+  border: 1px solid var(--gd-stroke);
+  background: rgba(255,255,255,.28);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--gd-muted);
+}
+
+/* Button (tu mismo estilo) */
+.gd-loginBtn{
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(79,70,229,.28);
+  cursor: pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 0 14px;
+  color: var(--gd-text);
+  background: linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.12));
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.gd-loginBtn:hover{ transform: translateY(-1px); border-color: rgba(79,70,229,.42); }
+.gd-loginBtn:active{ transform: translateY(0); }
+.gd-loginBtn:disabled{ opacity:.65; cursor:not-allowed; transform:none; }
+
+.gd-loginBtn__label{ font-weight: 900; letter-spacing:.2px; font-size: 13px; }
+.gd-loginBtn__chev{
+  width: 34px; height: 34px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+}
+
+/* Footer */
+.gd-loginFooter{
+  margin-top: 12px;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 12px;
+}
+.gd-loginHint{ color: var(--gd-muted); font-size: 12px; }
+.gd-loginMeta{ color: var(--gd-muted); font-size: 12px; opacity: .85; }
+
+/* Responsive */
+@media (max-width: 900px){
+  .gd-loginShell{ grid-template-columns: 1fr; }
+  .gd-loginRight{ padding-top: 0; }
+  .gd-loginRightCard{ box-shadow: var(--gd-shadow-soft); }
+}

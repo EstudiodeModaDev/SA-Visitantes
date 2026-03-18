@@ -1,0 +1,106 @@
+:root{
+  --gd-toast-gap: 10px;
+  --gd-toast-w: 360px;
+}
+
+.gd-toastViewport{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+
+  display: grid;
+  gap: var(--gd-toast-gap);
+  width: min(var(--gd-toast-w), calc(100vw - 36px));
+}
+
+.gd-toast{
+  border-radius: 16px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-glass);
+  box-shadow: var(--gd-shadow-soft);
+  backdrop-filter: blur(10px);
+
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 10px 10px 10px;
+
+  animation: gdToastIn .16s ease-out;
+}
+
+@keyframes gdToastIn{
+  from{ transform: translateY(6px); opacity: 0; }
+  to{ transform: translateY(0); opacity: 1; }
+}
+
+.gd-toast__icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+}
+
+.gd-toast__body{ min-width: 0; }
+.gd-toast__title{
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: var(--gd-text);
+  font-size: 13px;
+}
+.gd-toast__msg{
+  color: var(--gd-muted);
+  font-size: 12.5px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gd-toast__close{
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--gd-muted);
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform .12s ease, background .12s ease, color .12s ease;
+}
+.gd-toast__close:hover{
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+  transform: translateY(-1px);
+}
+
+/* tonos */
+.gd-toast--success{ border-color: rgba(16,185,129,.28); }
+.gd-toast--success .gd-toast__icon{
+  border-color: rgba(16,185,129,.28);
+  background: rgba(16,185,129,.10);
+}
+
+.gd-toast--error{ border-color: rgba(239,68,68,.28); }
+.gd-toast--error .gd-toast__icon{
+  border-color: rgba(239,68,68,.28);
+  background: rgba(239,68,68,.10);
+}
+
+.gd-toast--warning{ border-color: rgba(245,158,11,.30); }
+.gd-toast--warning .gd-toast__icon{
+  border-color: rgba(245,158,11,.30);
+  background: rgba(245,158,11,.12);
+}
+
+.gd-toast--info{ border-color: rgba(99,102,241,.28); }
+.gd-toast--info .gd-toast__icon{
+  border-color: rgba(99,102,241,.28);
+  background: rgba(99,102,241,.10);
+}

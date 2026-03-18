@@ -1,0 +1,241 @@
+.gd-sidebar{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: var(--gd-sb-w);
+  padding: var(--gd-sb-pad);
+  border-right: 1px solid var(--gd-stroke);
+  background: rgba(79,70,229,0.16);
+  box-shadow: 18px 0 40px rgba(2,6,23,0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+[data-theme="dark"] .gd-sidebar{
+  box-shadow: 18px 0 50px rgba(0,0,0,0.35);
+}
+
+.gd-sidebar.gd-sidebar--collapsed{
+  width: var(--gd-sb-w-collapsed);
+  padding: 14px 10px;
+}
+
+.gd-sidebar__header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 6px 6px 10px;
+}
+
+.gd-sidebar__toggle{
+  height: 40px;
+  width: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+
+.gd-sidebar__toggle:hover{
+  transform: translateY(-1px);
+  border-color: var(--gd-stroke2);
+}
+
+.gd-sidebar__toggle:active{
+  transform: translateY(0px);
+}
+
+.gd-sidebar__toggle:focus-visible{
+  box-shadow: var(--gd-focus);
+}
+
+.gd-sidebar__nav{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 2px 10px;
+
+  flex: 1 1 auto;     
+  min-height: 0;      
+  overflow: auto;
+}
+/* Item */
+.gd-sidebar__item{
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--gd-muted);
+
+  border-radius: 14px;
+  padding: 10px 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+  user-select: none;
+  text-align: left;
+
+  transition:
+    background .12s ease,
+    border-color .12s ease,
+    transform .12s ease,
+    color .12s ease;
+}
+
+.gd-sidebar__item:hover{
+  background: var(--gd-surface2);
+  border-color: var(--gd-stroke);
+  color: var(--gd-text);
+  transform: translateY(-1px);
+}
+
+.gd-sidebar__item:active{
+  transform: translateY(0px);
+}
+
+.gd-sidebar__item:focus-visible{
+  box-shadow: var(--gd-focus);
+}
+
+/* Active */
+.gd-sidebar__item.is-active{
+  background: linear-gradient(135deg, rgba(79,70,229,0.14), rgba(124,58,237,0.10));
+  border-color: rgba(79,70,229,0.28);
+  color: var(--gd-text);
+}
+
+/* Icon bubble */
+.gd-sidebar__icon{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-surface2);
+  color: var(--gd-text);
+}
+
+/* Make svg inside consistent */
+.gd-sidebar__icon svg{
+  display: block;
+}
+
+.gd-sidebar__label{
+  font-size: 13px;
+  line-height: 1.1;
+  letter-spacing: .2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed behavior (you already add is-compact per item) */
+.gd-sidebar__item.is-compact{
+  justify-content: center;
+  padding: 10px;
+}
+
+.gd-sidebar.gd-sidebar--collapsed .gd-sidebar__label{
+  display: none;
+}
+
+/* =========================
+   User card (sidebar footer)
+   ========================= */
+
+.gd-sidebar__userCard{
+  margin-top: auto; /* lo empuja al fondo */
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--gd-stroke);
+  background: var(--gd-glass);
+  box-shadow: var(--gd-shadow-soft);
+  backdrop-filter: blur(10px);
+  margin: 5px;
+}
+
+.gd-sidebar__userText{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.gd-sidebar__userName{
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gd-text);
+  letter-spacing: .2px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gd-sidebar__userMail{
+  font-size: 12px;
+  color: var(--gd-muted);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed: centra y oculta texto */
+.gd-sidebar.gd-sidebar--collapsed .gd-sidebar__userCard{
+  padding: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.gd-sidebar.gd-sidebar--collapsed .gd-sidebar__userText{
+  display: none;
+}
+
+/* Avatar con inicial */
+.gd-sidebar__userAvatar{
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: var(--gd-brand-contrast);
+
+  border: 1px solid rgba(79,70,229,0.28);
+  background: linear-gradient(135deg, var(--gd-brand), var(--gd-brand-2));
+  box-shadow: 0 10px 20px rgba(79,70,229,0.18);
+}
+
+/* Alineación normal (avatar + texto) */
+.gd-sidebar__userCard{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Collapsed: mostrar avatar centrado y ocultar texto */
+.gd-sidebar.gd-sidebar--collapsed .gd-sidebar__userCard{
+  justify-content: center;
+  padding: 10px;
+}
+
+.gd-sidebar.gd-sidebar--collapsed .gd-sidebar__userText{
+  display: none;
+}
